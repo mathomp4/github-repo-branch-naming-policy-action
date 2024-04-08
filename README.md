@@ -1,6 +1,6 @@
 # :no_good: GitHub Repository Branch Naming Policy Action
 
-> A GitHub Action which prevents pull requests from being merged and sends issue notifications if a branch is not following the configured naming convention.
+> A GitHub Action to prevent pull requests from being merged and sends issue notifications if a branch is not following the configured naming convention.
 
 - When a [branch protection](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches) rule is configured and [`Require status checks before merging`](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches#require-status-checks-before-merging) is enabled, the head branch name of the pull request must follow the configured naming convention otherwise the pull request will be blocked from merging.
 
@@ -26,17 +26,17 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Run Branch Naming Policy Action
-        uses: nicklegan/github-repo-branch-naming-policy-action@v1.1.0
+        uses: nicklegan/github-repo-branch-naming-policy-action@v1.1.1
         if: github.ref_type == 'branch' || github.ref_type == 'pull_request'
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           regex: '^([a-z0-9]+)-([a-z0-9]+)$'
-        # flags: i
-        # token: ${{ secrets.REPO_TOKEN }}
-        # delete: true
+          # flags: i
+          # token: ${{ secrets.REPO_TOKEN }}
+          # delete: true
 ```
 
 ## GitHub secrets
